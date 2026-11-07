@@ -9,13 +9,13 @@ students = [
 ]
 
 @app.get("/students")
-def view_students(course : str = None):
-    if course == None:
+def view_students(course : str = None, age : int = None):
+    if age == None and course == None:
         return students
 
     res = []
     for student in students:
-        if student["course"] == course:
+        if student["course"] == course or student["age"] == age:
             res.append(student)
     return res
 
