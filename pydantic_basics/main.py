@@ -7,24 +7,29 @@
 
 """
 1. Type validation = List, Dict, Optional
+2. Data validation = EmailStr, AnyUrl, Field, Annotated
 """
 
-from pydantic import BaseModel
-from typing import List, Dict, Optional
+from pydantic import BaseModel, EmailStr, AnyUrl, Field
+from typing import List, Dict, Optional, Annotated
 
 class Patient(BaseModel):
-    name : str
-    age : int
-    allergies : Optional[List[str]] = None
+    name : Annotated[str, Field(max_length=5, description='This is Name Field')]
+    age : int = Field(gt=0, lt=60, strict=True)
+    email : EmailStr
+    linkedin_url : AnyUrl
+    allergies : Optional[List[str]] = Field(max_length=2)
+    married : Annotated[bool, Field(default=None, description='This is either T or F')]
     contact_details : Dict[str, str]
 
 def insert_patient_data(patient):
     print(patient.name)
     print(patient.age)
     print(patient.allergies)
+    print(patient.married)
     print("Inserted to DB")
 
-info = {"name" : "Punith", "age" : "30", "allergies" : ["pollen", "dust"], "contact_details" : {"abc" : "abc@mail.com", "xyz" : "xyz@mail.com"}}
+info = {'name' : 'Punit', 'age' : 21, 'email' : 'abc@mail.com', 'linkedin_url' : 'https://google.com','allergies' : ["pollen", "dust"], 'married' : 1,'contact_details' : {"abc" : 'abc@mail.com', 'xyz' : 'xyz@mail.com'}}
 patient = Patient(**info)
 
 insert_patient_data(patient)
