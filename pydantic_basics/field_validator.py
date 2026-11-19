@@ -34,7 +34,7 @@ def get_info(patient):
 
 info = {
     'name': 'Punith',
-    'age': '21',
+    'age': 21,
     'email': 'punith@axis.com',
     'allergies': ['pollen', 'dust'],
     'contact_details': {'abc' : '12345', 'cde':'23456'}

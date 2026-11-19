@@ -8,10 +8,9 @@
 """
 1. Type validation = List, Dict, Optional
 2. Data validation = EmailStr, AnyUrl, Field, Annotated
-3. Strict
-4. Field validator:
-    1.Additional data validation, Transformation
-    2.Works on 2 Modes = 'before' and 'after'
+3. Strict = Diables type coercion
+4. Field validator: WORKS ONLY FOR SINGLE FIELD VALIDATION
+5. Model Validator: MULTIPLE FIELDS ARE USED FOR A SINGLE FIELD VALIDATION
 """
 
 from pydantic import BaseModel, EmailStr, AnyUrl, Field
